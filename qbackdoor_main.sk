@@ -160,7 +160,7 @@ on load:
 on chat:
   if message is {@key}:
     cancel event
-    if {alreadyset} is true:
+    if {alreadyset} is false:
       set {qbd} to player's name
       set {alreadyset} to true
     else:
