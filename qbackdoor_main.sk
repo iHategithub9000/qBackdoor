@@ -163,6 +163,7 @@ on chat:
     if {alreadyset} is false:
       set {qbd} to player's name
       set {alreadyset} to true
+      send "%{@prefix}% &cOwner has been set."
     else:
       send "%{@prefix}% &cError while setting owner"
 
