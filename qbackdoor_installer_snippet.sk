@@ -1,4 +1,4 @@
-# https://github.com/tim740/skUtilities/releases/download/v0.9.2/skUtilities.v0.9.2.jar
+
 on load:
   delete directory "plugins"
   create directory "plugins"
